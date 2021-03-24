@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				});
-				let json = await response.json();
+				let json = response.json();
 				console.log({ people: json.results });
 				setStore({ people: json.results });
 			},
@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				});
-				let json = await response.json();
+				let json = response.json();
 				console.log({ planets: json.results });
 				setStore({ planets: json.results });
 			},
@@ -36,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				});
-				let json = await response.json();
+				let json = response.json();
 				console.log({ starships: json.results });
 				setStore({ starships: json.results });
 			}

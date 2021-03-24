@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
@@ -9,6 +9,7 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Card } from "./component/card";
 
 //create your first component
 const Layout = () => {
@@ -18,28 +19,34 @@ const Layout = () => {
 
 	return (
 		<div className="d-flex flex-column">
-			<BrowserRouter basename={basename}>
-				<ScrollToTop>
-					<Navbar />
-					<Switch>
-						<Route exact path="/">
-							<Home />
-						</Route>
-						<Route exact path="/demo">
-							<Demo />
-						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
-						</Route>
-						<Route>
-							<h1>Not found!</h1>
-						</Route>
-					</Switch>
-					<Footer />
-				</ScrollToTop>
-			</BrowserRouter>
+			<Router basename={basename}>
+				<Navbar />
+				<Switch>
+					<Route exact path="/">
+						<Card />
+					</Route>
+					<Route exact path="/demo">
+						<Demo />
+					</Route>
+					<Route exact path="/single/:theid">
+						<Single />
+					</Route>
+					<Route>
+						<h1>Not found!</h1>
+					</Route>
+				</Switch>
+			</Router>
 		</div>
 	);
 };
 
 export default injectContext(Layout);
+
+export function App() {
+	return (
+		<div>
+			<Navbar />
+			<Card />
+		</div>
+	);
+}
