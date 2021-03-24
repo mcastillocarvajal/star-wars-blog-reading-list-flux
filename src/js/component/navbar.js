@@ -19,7 +19,7 @@ export function Navbar() {
 							data-bs-toggle="dropdown"
 							aria-expanded="false">
 							Favorites
-							<span className="badge bg-dark">0</span>
+							<span className="badge bg-dark ml-1">0</span>
 						</button>
 						<ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
 							<li>

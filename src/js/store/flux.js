@@ -8,37 +8,58 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			getPeople: async () => {
-				let response = await fetch("https://www.swapi.tech/api/people", {
+				await fetch("https://www.swapi.tech/api/people", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json"
 					}
-				});
-				let json = response.json();
-				console.log({ people: json.results });
-				setStore({ people: json.results });
+				})
+					.then(res => {
+						return res.json();
+					})
+					.then(data => {
+						setStore(data.results);
+						console.log(data.results);
+					})
+					.catch(err => {
+						console.error(err);
+					});
 			},
 			getPlanets: async () => {
-				let response = await fetch("https://www.swapi.tech/api/planets", {
+				await fetch("https://www.swapi.tech/api/planets", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json"
 					}
-				});
-				let json = response.json();
-				console.log({ planets: json.results });
-				setStore({ planets: json.results });
+				})
+					.then(res => {
+						return res.json();
+					})
+					.then(data => {
+						setStore(data.results);
+						console.log(data.results);
+					})
+					.catch(err => {
+						console.error(err);
+					});
 			},
 			getStarships: async () => {
-				let response = await fetch("https://www.swapi.tech/api/starships", {
+				await fetch("https://www.swapi.tech/api/starships", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json"
 					}
-				});
-				let json = response.json();
-				console.log({ starships: json.results });
-				setStore({ starships: json.results });
+				})
+					.then(res => {
+						return res.json();
+					})
+					.then(data => {
+						setStore(data.results);
+						console.log(data.results);
+					})
+					.catch(err => {
+						console.error(err);
+					});
 			}
 		}
 	};
