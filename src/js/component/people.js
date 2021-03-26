@@ -35,8 +35,15 @@ export const People = () => {
 									Learn more!
 								</Link>
 								<Link>
-									<button type="button" className="btn btn-outline-light ml-5">
-										<i className="far fa-heart" />
+									<button
+										onClick={() => actions.addFavorite(item.name)}
+										type="button"
+										className="btn btn-light ml-5">
+										<i
+											className={
+												store.favorites.includes(item.name) ? "fas fa-heart" : "far fa-heart"
+											}
+										/>
 									</button>
 								</Link>
 							</div>

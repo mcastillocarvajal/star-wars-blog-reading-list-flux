@@ -11,7 +11,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(res => res.json())
 					.then(data => {
 						setStore({ people: data.results });
-						console.log(data.results);
 					})
 					.catch(err => console.error(err));
 			},
@@ -20,20 +19,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(res => res.json())
 					.then(data => {
 						setStore({ planets: data.results });
-						console.log(data.results);
 					})
 					.catch(err => console.error(err));
 			},
 			addFavorite: item => {
 				const store = getStore();
-				const newFavorites = { name: item };
-				setStore({ favorites: [...store.favorites].concat(newFavorites) });
-				console.log("THIS IS THE OBJECT" + store.favorites);
+				store.favorites.includes(item)
+					? setStore({ favorites: [...store.favorites] })
+					: setStore({ favorites: [...store.favorites, item] });
+				console.log("THIS IS THE OBJECT", store.favorites);
 			},
 			deleteFavorite: index => {
 				const store = getStore();
 				store.favorites.splice(index, 1);
-				setStore([...favorites]);
+				setStore([...store.favorites]);
 			}
 		}
 	};

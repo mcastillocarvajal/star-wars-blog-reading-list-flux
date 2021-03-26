@@ -31,9 +31,18 @@ export const Planets = () => {
 								<Link to={`/planets/${item.name}`} className="btn btn-light mr-5">
 									Learn more!
 								</Link>
-								<button type="button" className="btn btn-outline-light ml-5">
-									<i className="far fa-heart" />
-								</button>
+								<Link>
+									<button
+										onClick={() => actions.addFavorite(item.name)}
+										type="button"
+										className="btn btn-light ml-5">
+										<i
+											className={
+												store.favorites.includes(item.name) ? "fas fa-heart" : "far fa-heart"
+											}
+										/>
+									</button>
+								</Link>
 							</div>
 						</div>
 					</div>
