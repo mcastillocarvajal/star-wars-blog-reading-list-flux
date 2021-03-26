@@ -3,7 +3,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			people: [],
 			planets: [],
-			starships: [],
 			favorites: []
 		},
 		actions: {
@@ -25,14 +24,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(err => console.error(err));
 			},
-			getStarships: async () => {
-				await fetch("https://swapi.dev/api/starships/")
-					.then(res => res.json())
-					.then(data => {
-						setStore({ starships: data.results });
-						console.log(data.results);
-					})
-					.catch(err => console.error(err));
+			addFavorite: item => {
+				const store = getStore();
+				const newFavorites = { name: item };
+				setStore({ favorites: [...store.favorites].concat(newFavorites) });
+				console.log("THIS IS THE OBJECT" + store.favorites);
+			},
+			deleteFavorite: index => {
+				const store = getStore();
+				store.favorites.splice(index, 1);
+				setStore([...favorites]);
 			}
 		}
 	};

@@ -15,8 +15,8 @@ export const People = () => {
 						<div className="card bg-secondary text-white">
 							<img src={bb8} className="card-img-top" alt="..." />
 							<div className="card-body">
-								<h5 className="card-title">{item.name}</h5>
-								<ul className="pb-2">
+								<h4 className="card-title">{item.name}</h4>
+								<ul className="mb-3">
 									<li className="card-text">
 										<strong>Gender: </strong>
 										{item.gender}
@@ -30,12 +30,14 @@ export const People = () => {
 										{item.birth_year}
 									</li>
 								</ul>
-								<a href="#" className="btn btn-light">
+								<Link to="/characters" className="btn btn-light mr-5">
 									Learn more!
-								</a>
-								<button type="button" className="btn btn-outline-light ml-5">
-									<i className="far fa-heart" />
-								</button>
+								</Link>
+								<Link>
+									<button type="button" className="btn btn-outline-light ml-5">
+										<i className="far fa-heart" />
+									</button>
+								</Link>
 							</div>
 						</div>
 					</div>

@@ -2,14 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { Home } from "./views/home";
-import { Demo } from "./views/demo";
-import { Single } from "./views/single";
+import { PeopleView } from "./views/peopleView";
+import { PlanetsView } from "./views/planetsView";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { People } from "./component/people";
 import { Planets } from "./component/planets";
-import { Starships } from "./component/starships";
+import { Details } from "./component/details";
 
 //create your first component
 const Layout = () => {
@@ -25,14 +25,11 @@ const Layout = () => {
 					<Route exact path="/">
 						<Home />
 					</Route>
-					<Route exact path="/demo">
-						<Demo />
+					<Route exact path="/characters">
+						<PeopleView />
 					</Route>
-					<Route exact path="/single/:theid">
-						<Single />
-					</Route>
-					<Route>
-						<h1>Not found!</h1>
+					<Route exact path="/planets">
+						<PlanetsView />
 					</Route>
 				</Switch>
 			</Router>
@@ -48,7 +45,7 @@ export function App() {
 			<Navbar />
 			<People />
 			<Planets />
-			<Starships />
+			<Details />
 		</div>
 	);
 }
