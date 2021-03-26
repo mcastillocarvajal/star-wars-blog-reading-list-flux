@@ -7,7 +7,7 @@ export function Navbar() {
 		<div className="container">
 			<nav className="navbar border-bottom border-white">
 				<div className="container-fluid">
-					<Link className="navbar-brand" to="/home">
+					<Link className="navbar-brand" to="/">
 						<img src={logo} />
 					</Link>
 					<div className="dropdown">

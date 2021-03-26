@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Details } from "../component/details";
+import { Context } from "../store/appContext";
 
 export const PeopleView = () => {
+	const { store, actions } = useContext(Context);
+	const { name } = useParams();
 	return (
 		<div className="container mt-5">
 			<Details />
@@ -19,18 +22,24 @@ export const PeopleView = () => {
 					</tr>
 				</thead>
 				<tbody className="text-center">
-					<tr>
-						<th scope="row">1</th>
-						<td>Mark</td>
-						<td>Otto</td>
-						<td>@mdo</td>
-						<td>@mdo</td>
-						<td>@mdo</td>
-						<td>@mdo</td>
-					</tr>
+					{store.people.map((item, i) => {
+						if (item.name == name) {
+							return (
+								<tr key={i}>
+									<th scope="row">{item.gender}</th>
+									<td>{item.height}</td>
+									<td>{item.birth_year}</td>
+									<td>{item.mass}</td>
+									<td>{item.hair_color}</td>
+									<td>{item.skin_color}</td>
+									<td>{item.eye_color}</td>
+								</tr>
+							);
+						}
+					})}
 				</tbody>
 			</table>
-			<Link to="/home">
+			<Link to="/">
 				<button className="btn btn-dark mb-5">Go back</button>
 			</Link>
 		</div>

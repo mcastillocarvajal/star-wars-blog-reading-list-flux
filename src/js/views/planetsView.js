@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Details } from "../component/details";
+import { Context } from "../store/appContext";
 
 export const PlanetsView = () => {
+	const { store, actions } = useContext(Context);
+	const { name } = useParams();
 	return (
 		<div className="container mt-5">
 			<Details />
@@ -18,17 +21,23 @@ export const PlanetsView = () => {
 					</tr>
 				</thead>
 				<tbody className="text-center">
-					<tr>
-						<th scope="row">1</th>
-						<td>Mark</td>
-						<td>Otto</td>
-						<td>@mdo</td>
-						<td>@mdo</td>
-						<td>@mdo</td>
-					</tr>
+					{store.planets.map((item, i) => {
+						if (item.name == name) {
+							return (
+								<tr key={i}>
+									<th scope="row">{item.diameter}</th>
+									<td>{item.climate}</td>
+									<td>{item.gravity}</td>
+									<td>{item.terrain}</td>
+									<td>{item.surface_water}</td>
+									<td>{item.population}</td>
+								</tr>
+							);
+						}
+					})}
 				</tbody>
 			</table>
-			<Link to="/home">
+			<Link to="/">
 				<button className="btn btn-dark mb-5">Go back</button>
 			</Link>
 		</div>
