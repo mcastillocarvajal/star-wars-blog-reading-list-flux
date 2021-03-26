@@ -7,31 +7,31 @@ export function Navbar() {
 		<div className="container">
 			<nav className="navbar border-bottom border-white">
 				<div className="container-fluid">
-					<Link className="navbar-brand" to="/">
+					<Link className="navbar-brand" to="/home">
 						<img src={logo} />
 					</Link>
 					<div className="dropdown">
 						<button
-							className="btn btn-secondary dropdown-toggle"
+							className="btn btn-dark dropdown-toggle"
 							type="button"
-							id="dropdownMenuButton2"
-							data-bs-toggle="dropdown"
+							id="dropdownMenuButton"
+							data-toggle="dropdown"
+							aria-haspopup="true"
 							aria-expanded="false">
 							Favorites
 							<span className="badge bg-dark ml-1">0</span>
 						</button>
-						<ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-							<li>
-								<a className="dropdown-item active" href="#">
-									Action
-								</a>
-							</li>
-							<li>
-								<a className="dropdown-item" href="#">
-									Another action
-								</a>
-							</li>
-						</ul>
+						<div className="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+							<a className="dropdown-item text-white" href="#">
+								Action
+							</a>
+							<a className="dropdown-item text-white" href="#">
+								Another action
+							</a>
+							<a className="dropdown-item text-white" href="#">
+								Something else here
+							</a>
+						</div>
 					</div>
 				</div>
 			</nav>

@@ -6,15 +6,15 @@ import details from "../../img/details.jpg";
 
 export const Details = props => {
 	const { store, actions } = useContext(Context);
-	const params = useParams();
+	const { name } = useParams();
 	return (
 		<div className="container text-white">
 			<div className="row">
 				<div className="col">
 					<img src={details} className="w-100 h-100" />
 				</div>
-				<div className="col bg-secondary rounded mr-3">
-					<h2 className="text-center my-3">NAME</h2>
+				<div className="col bg-dark rounded mr-3">
+					<h2 className="text-center my-3">{name}</h2>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel ligula at ex blandit
 						sollicitudin. Nunc malesuada facilisis ipsum. In ultrices, ipsum ac rhoncus lacinia, lectus urna
@@ -29,27 +29,6 @@ export const Details = props => {
 					</p>
 				</div>
 			</div>
-			<table className="table text-white mb-2">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">First</th>
-						<th scope="col">Last</th>
-						<th scope="col">Handle</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>Mark</td>
-						<td>Otto</td>
-						<td>@mdo</td>
-					</tr>
-				</tbody>
-			</table>
-			<Link to="/">
-				<button className="btn btn-secondary mb-5">Go back</button>
-			</Link>
 		</div>
 	);
 };

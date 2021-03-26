@@ -22,13 +22,13 @@ const Layout = () => {
 			<Router basename={basename}>
 				<Navbar />
 				<Switch>
-					<Route exact path="/">
+					<Route exact path="/home">
 						<Home />
 					</Route>
-					<Route exact path="/characters">
+					<Route exact path="/characters/:name">
 						<PeopleView />
 					</Route>
-					<Route exact path="/planets">
+					<Route exact path="/planets/:name">
 						<PlanetsView />
 					</Route>
 				</Switch>

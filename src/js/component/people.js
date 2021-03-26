@@ -1,18 +1,19 @@
 import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 import bb8 from "../../img/bb8.jpg";
 
 export const People = () => {
 	const { store, actions } = useContext(Context);
+	const { name } = useParams();
 	return (
 		<>
 			{store.people.map((item, i) => {
 				return (
 					<div className="container" key={i}>
-						<div className="card bg-secondary text-white">
+						<div className="card bg-dark text-white">
 							<img src={bb8} className="card-img-top" alt="..." />
 							<div className="card-body">
 								<h4 className="card-title">{item.name}</h4>
@@ -30,7 +31,7 @@ export const People = () => {
 										{item.birth_year}
 									</li>
 								</ul>
-								<Link to="/characters" className="btn btn-light mr-5">
+								<Link to={`/characters/${item.name}`} className="btn btn-light mr-5">
 									Learn more!
 								</Link>
 								<Link>
