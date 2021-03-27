@@ -27,12 +27,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.favorites.includes(item)
 					? setStore({ favorites: [...store.favorites] })
 					: setStore({ favorites: [...store.favorites, item] });
-				console.log("THIS IS THE OBJECT", store.favorites);
+				localStorage.setItem("favorites", JSON.stringify(store.favorites));
+				console.log(">>>>addFavorite", store.favorites);
 			},
 			deleteFavorite: index => {
 				const store = getStore();
 				const filter = store.favorites.filter(item => item != index);
 				setStore({ favorites: filter });
+				localStorage.setItem("favorites", JSON.stringify(store.favorites));
+				console.log(">>>>deleteFavorite", store.favorites);
+			},
+			getLocalStorage: () => {
+				const localData = localStorage.getItem("favorites");
+				setStore({
+					favorites: localData ? JSON.parse(localData) : null
+				});
 			}
 		}
 	};

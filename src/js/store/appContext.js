@@ -31,6 +31,7 @@ const injectContext = PassedComponent => {
 			 * state.actions.loadSomeData(); <---- calling this function from the flux.js actions
 			 *
 			 **/
+			state.actions.getLocalStorage();
 			state.actions.getPeople();
 			state.actions.getPlanets();
 		}, []);
