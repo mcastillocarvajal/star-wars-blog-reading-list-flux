@@ -29,6 +29,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					: setStore({ favorites: [...store.favorites, item] });
 				localStorage.setItem("favorites", JSON.stringify(store.favorites));
 				console.log(">>>>addFavorite", store.favorites);
+				console.log(">>>>People", Object.values(store.people));
 			},
 			deleteFavorite: index => {
 				const store = getStore();
