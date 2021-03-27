@@ -33,7 +33,11 @@ export const Planets = () => {
 								</Link>
 								<Link>
 									<button
-										onClick={() => actions.addFavorite(item.name)}
+										onClick={() =>
+											store.favorites.includes(item.name)
+												? actions.deleteFavorite(item.name)
+												: actions.addFavorite(item.name)
+										}
 										type="button"
 										className="btn btn-light ml-5">
 										<i

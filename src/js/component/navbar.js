@@ -21,7 +21,11 @@ export function Navbar() {
 							aria-haspopup="true"
 							aria-expanded="false">
 							Favorites
-							<span className="badge bg-dark ml-1">{store.favorites.length}</span>
+							{store.favorites.length == 0 ? (
+								<span>&nbsp;&nbsp;</span>
+							) : (
+								<span className="badge ml-1">{store.favorites.length}</span>
+							)}
 						</button>
 						<div className="dropdown-menu bg-light">
 							{store.favorites.length == 0 ? (
@@ -31,7 +35,7 @@ export function Navbar() {
 									return (
 										<a className="dropdown-item" key={i}>
 											{item}
-											<span onClick={() => actions.deleteFavorite(i)}>
+											<span onClick={() => actions.deleteFavorite(item)}>
 												<i className="fas fa-trash-alt float-right mt-1" />
 											</span>
 										</a>

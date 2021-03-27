@@ -31,8 +31,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			deleteFavorite: index => {
 				const store = getStore();
-				store.favorites.splice(index, 1);
-				setStore([...store.favorites]);
+				const filter = store.favorites.filter(item => item != index);
+				setStore({ favorites: filter });
 			}
 		}
 	};
