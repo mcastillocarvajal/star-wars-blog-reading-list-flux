@@ -29,7 +29,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					: setStore({ favorites: [...store.favorites, item] });
 				localStorage.setItem("favorites", JSON.stringify(store.favorites));
 				console.log(">>>>addFavorite", store.favorites);
-				console.log(">>>>People", Object.values(store.people));
 			},
 			deleteFavorite: index => {
 				const store = getStore();
@@ -43,6 +42,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({
 					favorites: localData ? JSON.parse(localData) : null
 				});
+			},
+			handleOnSearch: (string, results) => {
+				console.log(string, results);
+			},
+			handleOnSelect: item => {
+				console.log(item);
+			},
+			handleOnFocus: () => {
+				console.log("Focused");
 			}
 		}
 	};
