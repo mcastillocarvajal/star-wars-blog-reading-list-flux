@@ -10,6 +10,8 @@ import { Navbar } from "./component/navbar";
 import { People } from "./component/people";
 import { Planets } from "./component/planets";
 import { Details } from "./component/details";
+import { Landing } from "./component/landing_page";
+import { Footer } from "./component/footer";
 
 //create your first component
 const Layout = () => {
@@ -20,7 +22,8 @@ const Layout = () => {
 	return (
 		<div className="d-flex flex-column">
 			<Router basename={basename}>
-				<Navbar />
+				<Landing />
+				<Footer />
 				<Switch>
 					<Route exact path="/">
 						<Home />
@@ -46,6 +49,8 @@ export function App() {
 			<People />
 			<Planets />
 			<Details />
+			<Landing />
+			<Footer />
 		</div>
 	);
 }

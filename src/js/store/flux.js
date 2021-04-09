@@ -47,7 +47,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(string, results);
 			},
 			handleOnSelect: item => {
-				console.log(item);
+				console.log("<<<<<handleOnSelect", item);
 			},
 			handleOnFocus: () => {
 				console.log("Focused");

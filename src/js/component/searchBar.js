@@ -5,6 +5,7 @@ import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
 export const SearchBar = () => {
 	const { store, actions } = useContext(Context);
+	const { name } = useParams();
 	const options = store.people
 		.map(item => ({ name: item.name }))
 		.concat(store.planets.map(item => ({ name: item.name })));
