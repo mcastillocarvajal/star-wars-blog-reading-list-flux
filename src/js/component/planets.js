@@ -28,7 +28,7 @@ export const Planets = () => {
 									</li>
 								</ul>
 								<br />
-								<Link to={`/planets/${item.name}`} className="btn btn-light mr-5">
+								<Link to={`/planets/${item.name}`} className="btn btn-primary mr-5">
 									Learn more!
 								</Link>
 								<Link>

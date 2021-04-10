@@ -31,7 +31,7 @@ export const People = () => {
 										{item.birth_year}
 									</li>
 								</ul>
-								<Link to={`/characters/${item.name}`} className="btn btn-light mr-5">
+								<Link to={`/characters/${item.name}`} className="btn btn-primary mr-5">
 									Learn more!
 								</Link>
 								<Link>

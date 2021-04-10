@@ -16,10 +16,10 @@ export const Landing = () => {
 					</Link>
 					<h6 className="text-white text-center mb-5">OFFICIAL STAR WARS DATABANK</h6>
 					<h1 className="text-white text-center">LET THE FORCE BE WITH YOU</h1>
-					<h2 className="text-white text-center">CREATE AN ACCOUNT AND</h2>
+					<h1 className="text-white text-center">CREATE AN ACCOUNT AND</h1>
 					<h3 className="text-white text-center">START DISCOVERING THE</h3>
 					<h4 className="text-white text-center">STAR WARS UNIVERSE</h4>
-					<div className="d-flex justify-content-center mt-3">
+					<div className="d-flex justify-content-center mt-5 mb-3">
 						<button type="button" className="btn btn-primary mr-3">
 							Log in
 						</button>

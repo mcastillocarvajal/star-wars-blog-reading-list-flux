@@ -8,7 +8,7 @@ export function Navbar() {
 	const { store, actions } = useContext(Context);
 	return (
 		<div className="container">
-			<nav className="navbar border-bottom border-white row">
+			<nav className="navbar border-bottom border-secondary row">
 				<Link className="navbar-brand col-8" to="/">
 					<img src={logo} />
 				</Link>
