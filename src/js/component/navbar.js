@@ -9,7 +9,7 @@ export function Navbar() {
 	return (
 		<div className="container">
 			<nav className="navbar border-bottom border-secondary row">
-				<Link className="navbar-brand col-8" to="/">
+				<Link className="navbar-brand col-8" to="/home">
 					<img src={logo} />
 				</Link>
 				<SearchBar />

@@ -2,6 +2,7 @@ import React from "react";
 import { People } from "../component/people";
 import { Planets } from "../component/planets";
 import { Navbar } from "../component/navbar";
+import { Footer } from "../component/footer";
 
 export const Home = () => {
 	return (
@@ -17,6 +18,7 @@ export const Home = () => {
 					<Planets />
 				</div>
 			</div>
+			<Footer />
 		</>
 	);
 };

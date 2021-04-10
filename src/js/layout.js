@@ -4,14 +4,17 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Home } from "./views/home";
 import { PeopleView } from "./views/peopleView";
 import { PlanetsView } from "./views/planetsView";
+import { Landing } from "./views/landing_page";
+import { Login_view } from "./views/login_view";
+import { Register_view } from "./views/register_view ";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { People } from "./component/people";
 import { Planets } from "./component/planets";
 import { Details } from "./component/details";
-import { Landing } from "./component/landing_page";
 import { Footer } from "./component/footer";
+import { Login } from "./component/login";
 
 //create your first component
 const Layout = () => {
@@ -22,10 +25,17 @@ const Layout = () => {
 	return (
 		<div className="d-flex flex-column">
 			<Router basename={basename}>
-				<Landing />
-				<Footer />
 				<Switch>
 					<Route exact path="/">
+						<Landing />
+					</Route>
+					<Route exact path="/login">
+						<Login_view />
+					</Route>
+					<Route exact path="/register">
+						<Register_view />
+					</Route>
+					<Route exact path="/home">
 						<Home />
 					</Route>
 					<Route exact path="/characters/:name">
@@ -50,6 +60,8 @@ export function App() {
 			<Planets />
 			<Details />
 			<Landing />
+			<Login_view />
+			<Register_view />
 			<Footer />
 		</div>
 	);
