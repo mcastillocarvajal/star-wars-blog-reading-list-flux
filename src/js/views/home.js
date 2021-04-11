@@ -8,7 +8,7 @@ export const Home = () => {
 	return (
 		<>
 			<Navbar />
-			<div className="container mt-4">
+			<div className="container mt-5">
 				<h2 className="text-white pl-4">CHARACTERS</h2>
 				<div className="d-flex flex-row flex-nowrap overflow-auto mb-5">
 					<People />

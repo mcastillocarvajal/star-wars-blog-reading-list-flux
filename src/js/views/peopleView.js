@@ -44,8 +44,31 @@ export const PeopleView = () => {
 					</tbody>
 				</table>
 				<Link to="/home">
-					<button className="btn btn-dark">Go back</button>
+					<button className="btn btn-primary">Go back</button>
 				</Link>
+				{store.people.map((item, i) => {
+					if (item.name == name) {
+						return (
+							<Link>
+								<button
+									onClick={() =>
+										store.favorites.includes(item.name)
+											? actions.deleteFavorite(item.name)
+											: actions.addFavorite(item.name)
+									}
+									type="button"
+									className="btn btn-dark ml-2">
+									{store.favorites.includes(item.name) ? (
+										<span>Remove from favorites</span>
+									) : (
+										<span>Add to favorites</span>
+									)}
+								</button>
+							</Link>
+						);
+					}
+				})}
+				;
 			</div>
 			<Footer />
 		</>
