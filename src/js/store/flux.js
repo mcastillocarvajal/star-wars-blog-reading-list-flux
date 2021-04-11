@@ -3,7 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			people: [],
 			planets: [],
-			favorites: []
+			favorites: [],
+			token: null
 		},
 		actions: {
 			getPeople: async () => {
@@ -51,8 +52,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					favorites: localData ? JSON.parse(localData) : null
 				});
 			},
-			handleLogin: (email, password) => {
-				console.log("<<<<LOGIN IS WORKING");
+			Login: async (email, password) => {
 				const opts = {
 					method: "POST",
 					headers: {
@@ -63,13 +63,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 						password: password
 					})
 				};
-				fetch("https://3000-moccasin-dinosaur-8dclvd36.ws-us03.gitpod.io/login", opts)
-					.then(res => {
-						if (res.status === 200) return res.json();
-						else alert("Invalid email or password");
-					})
-					.then()
-					.catch(err => console.error(">>>LOGIN ERROR", err));
+				try {
+					const resp = await fetch("https://3000-moccasin-dinosaur-8dclvd36.ws-us03.gitpod.io/login", opts);
+					if (resp.status != 200) {
+						alert("Invalid email or password");
+						return false;
+					}
+					const data = await resp.json();
+					console.log(">>>>DATA: ", data);
+					sessionStorage.setItem("token", data.access_token);
+					setStore({ token: data.access_token });
+					return true;
+				} catch (err) {
+					console.error(">>>LOGIN ERROR", err);
+				}
 			},
 			handleOnSearch: (string, results) => {
 				console.log(string, results);
