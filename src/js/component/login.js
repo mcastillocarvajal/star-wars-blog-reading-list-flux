@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const Login = props => {
+export const Login = () => {
 	const { store, actions } = useContext(Context);
 	const { name } = useParams();
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
 	return (
 		<div className="d-flex flex-column mx-auto">
 			<h1 className="text-white text-center mt-4 mb-3">YOUR ACCESS TO THE GALAXY&apos;S EDGE</h1>
@@ -14,7 +17,12 @@ export const Login = props => {
 				<form>
 					<div className="form-group">
 						<label>Email address</label>
-						<input className="form-control" placeholder="Your email" />
+						<input
+							className="form-control"
+							placeholder="Your email"
+							value={email}
+							onChange={e => setEmail(e.target.value)}
+						/>
 						<small className="form-text text-muted" />
 						<label>Password</label>
 						<input
@@ -22,10 +30,14 @@ export const Login = props => {
 							className="form-control"
 							id="exampleInputPassword1"
 							placeholder="Password"
+							value={password}
+							onChange={e => setPassword(e.target.value)}
 						/>
 					</div>
 					<div className="d-flex justify-content-center">
-						<button type="submit" className="btn btn-primary text-center mt-4">
+						<button
+							className="btn btn-primary text-center mt-4"
+							onClick={actions.handleLogin(email, password)}>
 							Log in
 						</button>
 					</div>

@@ -7,21 +7,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			getPeople: async () => {
-				await fetch("https://swapi.dev/api/people/")
+				await fetch("https://3000-moccasin-dinosaur-8dclvd36.ws-us03.gitpod.io/character")
 					.then(res => res.json())
 					.then(data => {
-						setStore({ people: data.results });
+						setStore({ people: data });
 					})
 					.catch(err => console.error(err));
 			},
 			getPlanets: async () => {
-				await fetch("https://swapi.dev/api/planets/")
+				await fetch("https://3000-moccasin-dinosaur-8dclvd36.ws-us03.gitpod.io/planet")
 					.then(res => res.json())
 					.then(data => {
-						setStore({ planets: data.results });
+						setStore({ planets: data });
 					})
 					.catch(err => console.error(err));
 			},
+			// getFavorites: async () => {
+			// 	await fetch("https://3000-moccasin-dinosaur-8dclvd36.ws-us03.gitpod.io/planet")
+			// 		.then(res => res.json())
+			// 		.then(data => {
+			// 			setStore({ planets: data });
+			// 		})
+			// 		.catch(err => console.error(err));
+			// },
 			addFavorite: item => {
 				const store = getStore();
 				store.favorites.includes(item)
@@ -42,6 +50,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({
 					favorites: localData ? JSON.parse(localData) : null
 				});
+			},
+			handleLogin: (email, password) => {
+				console.log("<<<<LOGIN IS WORKING");
+				const opts = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						email: email,
+						password: password
+					})
+				};
+				fetch("https://3000-moccasin-dinosaur-8dclvd36.ws-us03.gitpod.io/login", opts)
+					.then(res => {
+						if (res.status === 200) return res.json();
+						else alert("Invalid email or password");
+					})
+					.then()
+					.catch(err => console.error(">>>LOGIN ERROR", err));
 			},
 			handleOnSearch: (string, results) => {
 				console.log(string, results);
