@@ -32,6 +32,7 @@ const injectContext = PassedComponent => {
 			 *
 			 **/
 			state.actions.getLocalStorage();
+			state.actions.getSessionStorage();
 			state.actions.getPeople();
 			state.actions.getPlanets();
 		}, []);

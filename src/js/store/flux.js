@@ -52,6 +52,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					favorites: localData ? JSON.parse(localData) : null
 				});
 			},
+			getSessionStorage: () => {
+				const token = sessionStorage.getItem("token");
+				if (token && token != "" && token != undefined) setStore({ token: token });
+			},
 			Login: async (email, password) => {
 				const opts = {
 					method: "POST",
