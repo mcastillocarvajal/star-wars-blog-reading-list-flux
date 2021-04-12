@@ -19,8 +19,8 @@ export const Landing = () => {
 						<h6 className="text-white text-center mb-5">OFFICIAL STAR WARS DATABANK</h6>
 						<h1 className="text-white text-center">LET THE FORCE BE WITH YOU</h1>
 						<h1 className="text-white text-center">CREATE AN ACCOUNT AND</h1>
-						<h3 className="text-white text-center">START DISCOVERING THE</h3>
-						<h4 className="text-white text-center">STAR WARS UNIVERSE</h4>
+						<h3 className="text-white text-center">LIVE YOUR STAR WARS ADVENTURE</h3>
+						<h4 className="text-white text-center">IN A GALAXY FAR, FAR AWAY</h4>
 						<div className="d-flex justify-content-center mt-4">
 							<Link to="/login">
 								<button type="button" className="btn btn-primary mr-3">

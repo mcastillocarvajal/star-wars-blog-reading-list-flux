@@ -70,12 +70,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return false;
 					}
 					const data = await resp.json();
-					console.log(">>>>DATA: ", data);
+					console.log(">>>>LOGIN DATA: ", data);
 					sessionStorage.setItem("token", data.access_token);
 					setStore({ token: data.access_token });
 					return true;
 				} catch (err) {
 					console.error(">>>LOGIN ERROR", err);
+				}
+			},
+			Register: async (username, email, password) => {
+				const opts = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						username: username,
+						email: email,
+						password: password
+					})
+				};
+				try {
+					const resp = await fetch("https://3000-moccasin-dinosaur-8dclvd36.ws-us03.gitpod.io/user", opts);
+					if (resp.status != 200) {
+						// alert("Invalid email or password");
+						return false;
+					}
+					const data = await resp.json();
+					console.log(">>>>REGISTER DATA: ", data);
+					return true;
+				} catch (err) {
+					console.error(">>>REGISTER ERROR", err);
 				}
 			},
 			handleOnSearch: (string, results) => {
