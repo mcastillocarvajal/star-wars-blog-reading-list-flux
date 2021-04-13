@@ -31,16 +31,18 @@ export function Navbar() {
 						</button>
 						<div className="dropdown-menu bg-light">
 							{store.favorites.length == 0 ? (
-								<a className="dropdown-item text-center">Add your favorites here!</a>
+								<a className="dropdown-item text-center ">Add your favorites here!</a>
 							) : (
 								store.favorites.map((item, i) => {
 									let path = store.people.map(elem => elem.name).indexOf(item);
 									return (
-										<a className="dropdown-item text-left" key={i}>
+										<a className="dropdown-item text-left" style={{ width: "200px" }} key={i}>
 											<span>
 												<i
 													className={
-														path == -1 ? "fas fa-globe-asia mr-1" : "far fa-user mr-1"
+														path == -1
+															? "fas fa-globe-asia mr-2 float left"
+															: "far fa-user mr-2 float left"
 													}
 												/>
 											</span>
@@ -48,7 +50,7 @@ export function Navbar() {
 												{item}
 											</Link>
 											<span onClick={() => actions.deleteFavorite(item)}>
-												<i className="fas fa-trash-alt float-right mt-1" />
+												<i className="fas fa-trash-alt float-right mt-1 ml-2" />
 											</span>
 										</a>
 									);
