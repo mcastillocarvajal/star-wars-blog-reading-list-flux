@@ -18,6 +18,7 @@ export const Login = () => {
 	useEffect(
 		() => {
 			actions.getUser();
+			actions.getFavorites();
 		},
 		[store.token]
 	);
