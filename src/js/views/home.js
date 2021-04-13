@@ -14,7 +14,7 @@ export const Home = () => {
 			{store.token && store.token != "" && store.token != undefined ? (
 				<>
 					<Navbar />
-					<div className="container mt-5">
+					<div className="container mt-1">
 						<h2 className="text-white pl-4">CHARACTERS</h2>
 						<div className="d-flex flex-row flex-nowrap overflow-auto mb-5">
 							<People />

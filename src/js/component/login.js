@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
@@ -14,6 +14,13 @@ export const Login = () => {
 	};
 
 	if (store.token && store.token != "" && store.token != undefined) history.push("/home");
+
+	useEffect(
+		() => {
+			actions.getUser();
+		},
+		[store.token]
+	);
 
 	return (
 		<div className="d-flex flex-column mx-auto">

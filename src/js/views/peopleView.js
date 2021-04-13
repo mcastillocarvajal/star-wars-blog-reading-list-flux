@@ -14,7 +14,7 @@ export const PeopleView = () => {
 			{store.token && store.token != "" && store.token != undefined ? (
 				<>
 					<Navbar />
-					<div className="container mt-5">
+					<div className="container mt-3">
 						<Details />
 						<table className="table table-borderless text-white mb-2">
 							<thead className="border-bottom border-secondary text-center">

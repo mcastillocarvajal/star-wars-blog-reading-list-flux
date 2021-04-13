@@ -4,7 +4,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			people: [],
 			planets: [],
 			favorites: [],
-			token: null
+			token: null,
+			user: []
 		},
 		actions: {
 			getPeople: async () => {
@@ -31,6 +32,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 		})
 			// 		.catch(err => console.error(err));
 			// },
+			getUser: async () => {
+				const store = getStore();
+				const opts = {
+					headers: {
+						Authorization: "Bearer " + store.token
+					}
+				};
+				try {
+					const resp = await fetch("https://3000-moccasin-dinosaur-8dclvd36.ws-us03.gitpod.io/user", opts);
+					const data = await resp.json();
+					console.log(">>>>USER DATA: ", data);
+					setStore({ user: data });
+				} catch (err) {
+					console.error(">>>LOGIN ERROR", err);
+				}
+			},
 			addFavorite: item => {
 				const store = getStore();
 				store.favorites.includes(item)
