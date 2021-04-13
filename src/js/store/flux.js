@@ -56,6 +56,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const token = sessionStorage.getItem("token");
 				if (token && token != "" && token != undefined) setStore({ token: token });
 			},
+			Logout: () => {
+				sessionStorage.removeItem("token");
+				setStore({ token: null });
+			},
 			Login: async (email, password) => {
 				const opts = {
 					method: "POST",
