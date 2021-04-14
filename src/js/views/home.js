@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { People } from "../component/people";
@@ -9,6 +9,13 @@ import { Footer } from "../component/footer";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
+	useEffect(
+		() => {
+			actions.getFavorites();
+		},
+		[store.token]
+	);
+
 	return (
 		<>
 			{store.token && store.token != "" && store.token != undefined ? (

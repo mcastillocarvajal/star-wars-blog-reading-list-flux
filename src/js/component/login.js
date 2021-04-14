@@ -7,7 +7,6 @@ export const Login = () => {
 	const { name } = useParams();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const token = sessionStorage.getItem("token");
 	const history = useHistory();
 	const handleLogin = () => {
 		actions.Login(email, password);
@@ -18,7 +17,6 @@ export const Login = () => {
 	useEffect(
 		() => {
 			actions.getUser();
-			actions.getFavorites();
 		},
 		[store.token]
 	);

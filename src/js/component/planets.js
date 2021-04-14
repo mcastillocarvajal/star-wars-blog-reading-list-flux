@@ -8,6 +8,11 @@ import planet from "../../img/planet.jpg";
 export const Planets = () => {
 	const { store, actions } = useContext(Context);
 	const { name } = useParams();
+	const handleDelete = name => {
+		const filter = store.favorite.filter(item => item.name == name);
+		const id = filter.map(i => i.id);
+		return id;
+	};
 	return (
 		<>
 			{store.planets.map((item, i) => {
@@ -34,15 +39,17 @@ export const Planets = () => {
 								<Link>
 									<button
 										onClick={() =>
-											store.favorites.includes(item.name)
-												? actions.deleteFavorite(item.name)
-												: actions.addFavorite(item.name)
+											store.favorite.map(fav => fav.name).includes(item.name)
+												? actions.deleteFavorite(handleDelete(item.name))
+												: actions.addFavorite(item.name, item.category, store.id)
 										}
 										type="button"
 										className="btn btn-light ml-5">
 										<i
 											className={
-												store.favorites.includes(item.name) ? "fas fa-heart" : "far fa-heart"
+												store.favorite.map(fav => fav.name).includes(item.name)
+													? "fas fa-heart"
+													: "far fa-heart"
 											}
 										/>
 									</button>

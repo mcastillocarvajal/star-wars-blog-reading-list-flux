@@ -5,6 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			planets: [],
 			token: null,
 			user: [],
+			id: "",
+			favorite: [],
 			favorites: []
 		},
 		actions: {
@@ -35,7 +37,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const resp = await fetch("https://3000-moccasin-dinosaur-8dclvd36.ws-us03.gitpod.io/user", opts);
 					const data = await resp.json();
 					console.log(">>>>USER DATA: ", data);
-					setStore({ user: data });
+					await setStore({ user: data });
+					const id = store.user["id"];
+					setStore({ id: id });
+					console.log(">>>>ID: ", store.id);
 				} catch (err) {
 					console.error(">>>LOGIN ERROR", err);
 				}
@@ -53,31 +58,65 @@ const getState = ({ getStore, getActions, setStore }) => {
 						opts
 					);
 					const data = await resp.json();
-					console.log(">>>>FAVORITE DATA: ", data);
+					const filter = data.filter(item => item.user_id == String(store.id));
+					setStore({ favorite: filter });
+					console.log(">>>>FAVORITES DATA: ", store.favorite);
 				} catch (err) {
-					console.error(">>>FAVORITE ERROR", err);
+					console.error(">>>FAVORITES ERROR", err);
 				}
 			},
-			addFavorite: item => {
+			addFavorite: async (name, category, user) => {
 				const store = getStore();
-				store.favorites.includes(item)
-					? setStore({ favorites: [...store.favorites] })
-					: setStore({ favorites: [...store.favorites, item] });
-				localStorage.setItem("favorites", JSON.stringify(store.favorites));
-				console.log(">>>>addFavorite", store.favorites);
+				const opts = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + store.token
+					},
+					body: JSON.stringify({
+						name: name,
+						category: category,
+						user_id: user
+					})
+				};
+				try {
+					const resp = await fetch(
+						"https://3000-moccasin-dinosaur-8dclvd36.ws-us03.gitpod.io/favorite",
+						opts
+					);
+					if (resp.status != 200) {
+						alert("ADD ERROR");
+					}
+					const data = await resp.json();
+					const filter = data.filter(item => item.user_id == String(store.id));
+					setStore({ favorite: filter });
+					console.log(">>>>addFavorite", store.favorite);
+				} catch (err) {
+					console.error(">>>ADD ERROR", err);
+				}
 			},
-			deleteFavorite: index => {
+			deleteFavorite: async id => {
 				const store = getStore();
-				const filter = store.favorites.filter(item => item != index);
-				setStore({ favorites: filter });
-				localStorage.setItem("favorites", JSON.stringify(store.favorites));
-				console.log(">>>>deleteFavorite", store.favorites);
-			},
-			getLocalStorage: () => {
-				const localData = localStorage.getItem("favorites");
-				setStore({
-					favorites: localData ? JSON.parse(localData) : null
-				});
+				const opts = {
+					method: "DELETE",
+					headers: {
+						Authorization: "Bearer " + store.token
+					}
+				};
+				try {
+					const resp = await fetch(
+						"https://3000-moccasin-dinosaur-8dclvd36.ws-us03.gitpod.io/favorite/" + `${id}`,
+						opts
+					);
+					if (resp.status != 200) {
+						alert("DELETE ERROR");
+					}
+					const filter = store.favorite.filter(item => item.id != id);
+					setStore({ favorite: filter });
+					console.log(">>>>deleteFavorite", store.favorite);
+				} catch (err) {
+					console.error(">>>DELETE ERROR", err);
+				}
 			},
 			getSessionStorage: () => {
 				const token = sessionStorage.getItem("token");
@@ -86,6 +125,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			Logout: () => {
 				sessionStorage.removeItem("token");
 				setStore({ token: null });
+				setStore({ user: [] });
 			},
 			Login: async (email, password) => {
 				const opts = {
@@ -142,7 +182,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(string, results);
 			},
 			handleOnSelect: item => {
-				console.log("<<<<<handleOnSelect", item);
+				return item;
 			},
 			handleOnFocus: () => {
 				console.log("Focused");

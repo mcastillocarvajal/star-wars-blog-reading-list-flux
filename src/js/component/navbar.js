@@ -23,33 +23,37 @@ export function Navbar() {
 							aria-haspopup="true"
 							aria-expanded="false">
 							Favorites
-							{store.favorites.length == 0 ? (
+							{store.favorite.length == 0 ? (
 								<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 							) : (
-								<span className="badge ml-1">{store.favorites.length}</span>
+								<span className="badge ml-1">{store.favorite.length}</span>
 							)}
 						</button>
 						<div className="dropdown-menu bg-light">
-							{store.favorites.length == 0 ? (
+							{store.favorite.length == 0 ? (
 								<a className="dropdown-item text-center ">Add your favorites here!</a>
 							) : (
-								store.favorites.map((item, i) => {
-									let path = store.people.map(elem => elem.name).indexOf(item);
+								store.favorite.map((item, i) => {
 									return (
 										<a className="dropdown-item text-left" style={{ width: "200px" }} key={i}>
 											<span>
 												<i
 													className={
-														path == -1
+														item.category != "character"
 															? "fas fa-globe-asia mr-2 float left"
 															: "far fa-user mr-2 float left"
 													}
 												/>
 											</span>
-											<Link to={path == -1 ? `/planets/${item}` : `/characters/${item}`}>
-												{item}
+											<Link
+												to={
+													item.category != "character"
+														? `/planets/${item.name}`
+														: `/characters/${item.name}`
+												}>
+												{item.name}
 											</Link>
-											<span onClick={() => actions.deleteFavorite(item)}>
+											<span onClick={() => actions.deleteFavorite(item.id)}>
 												<i className="fas fa-trash-alt float-right mt-1 ml-2" />
 											</span>
 										</a>

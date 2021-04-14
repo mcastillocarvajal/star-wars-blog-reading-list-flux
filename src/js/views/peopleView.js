@@ -9,6 +9,11 @@ export const PeopleView = () => {
 	const { store, actions } = useContext(Context);
 	const { name } = useParams();
 	const history = useHistory();
+	const handleDelete = name => {
+		const filter = store.favorite.filter(item => item.name == name);
+		const id = filter.map(i => i.id);
+		return id;
+	};
 	return (
 		<>
 			{store.token && store.token != "" && store.token != undefined ? (
@@ -55,13 +60,13 @@ export const PeopleView = () => {
 									<Link>
 										<button
 											onClick={() =>
-												store.favorites.includes(item.name)
-													? actions.deleteFavorite(item.name)
-													: actions.addFavorite(item.name)
+												store.favorite.map(fav => fav.name).includes(item.name)
+													? actions.deleteFavorite(handleDelete(item.name))
+													: actions.addFavorite(item.name, item.category, store.id)
 											}
 											type="button"
 											className="btn btn-dark ml-2">
-											{store.favorites.includes(item.name) ? (
+											{store.favorite.map(fav => fav.name).includes(item.name) ? (
 												<span>Remove from favorites</span>
 											) : (
 												<span>Add to favorites</span>
